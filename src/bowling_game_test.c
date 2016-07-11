@@ -4,24 +4,25 @@
 #include "assert.h"
 #include <stdbool.h>
 
-static void test_gutter_game()
+static void roll_many(int n, int pins)
 {
   int i;
+  for (i = 0; i < n; i++)
+    bowling_game_roll(pins);
+}
 
+static void test_gutter_game()
+{
   bowling_game_init();
-  for (i = 0; i < 20; i++)
-    bowling_game_roll(0);
+  roll_many(20, 0);
 
   assert(bowling_game_score() == 0 && "test_gutter_game()");
 }
 
 static void test_all_ones()
 {
-  int i;
-
   bowling_game_init();
-  for (i = 0; i < 20; i++)
-    bowling_game_roll(1);
+  roll_many(20, 1);
 
   assert(bowling_game_score() == 20 && "test_gutter_game()");
 }
